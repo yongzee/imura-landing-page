@@ -1,0 +1,1 @@
+web: gunicorn launch_page.wsgi:application

@@ -1,0 +1,704 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Imura Fashion Hub</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+<style>
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:'Poppins',sans-serif;
+}
+
+html{
+    scroll-behavior:smooth;
+}
+
+body{
+    background:#f8fafc;
+    color:#111827;
+}
+
+.container{
+    width:90%;
+    max-width:1200px;
+    margin:auto;
+}
+
+section{
+    padding:30px 0;
+}
+
+h1,h2,h3{
+    color:#0f172a;
+}
+
+a{
+    text-decoration:none;
+}
+
+/* NAVBAR */
+nav{
+    position:fixed;
+    top:0;
+    width:100%;
+    background:white;
+    z-index:1000;
+    box-shadow:0 2px 10px rgba(0,0,0,.05);
+}
+
+.nav-container{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    padding:20px 5%;
+}
+
+.logo{
+    font-size:1.5rem;
+    font-weight:700;
+    color:#2563eb;
+}
+
+.nav-links{
+    display:flex;
+    gap:20px;
+}
+
+.nav-links a{
+    color:#374151;
+}
+
+/* HERO */
+.hero{
+    min-height:100vh;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:50px;
+    padding-top:100px;
+}
+
+.hero-content{ flex:1; }
+
+.badge{
+    display:inline-block;
+    background:#dbeafe;
+    color:#2563eb;
+    padding:10px 20px;
+    border-radius:50px;
+    margin-bottom:20px;
+    font-weight:600;
+}
+
+.hero h1{
+    font-size:4rem;
+    line-height:1.1;
+    margin-bottom:20px;
+}
+
+.hero p{
+    font-size:1.1rem;
+    color:#6b7280;
+    margin-bottom:30px;
+}
+
+.hero-buttons{
+    display:flex;
+    gap:15px;
+}
+
+.btn-primary{
+    background:#2563eb;
+    color:white;
+    padding:15px 30px;
+    border-radius:10px;
+}
+
+.btn-secondary{
+    border:2px solid #2563eb;
+    color:#2563eb;
+    padding:15px 30px;
+    border-radius:10px;
+}
+
+.hero-image{ flex:1; text-align:center; }
+
+.hero-image img{
+    width:100%;
+    max-width:450px;
+}
+
+/* FEATURES */
+.section-title{
+    text-align:center;
+    margin-bottom:60px;
+}
+
+.section-title h2{
+    font-size:2.5rem;
+}
+
+.feature-grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+    gap:25px;
+}
+
+.feature-card{
+    background:white;
+    padding:30px;
+    border-radius:20px;
+    box-shadow:0 10px 30px rgba(0,0,0,.08);
+    transition:.3s;
+}
+
+.feature-card:hover{
+    transform:translateY(-10px);
+}
+
+.feature-icon{
+    font-size:3rem;
+    margin-bottom:15px;
+}
+
+/* STEPS */
+.steps{
+    background:white;
+}
+
+.timeline{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+    gap:20px;
+}
+
+.step{
+    background:#eff6ff;
+    padding:30px;
+    border-radius:15px;
+    text-align:center;
+    font-weight:600;
+}
+
+/* TRY ON */
+.tryon-gallery{
+    display:flex;
+    justify-content:center;
+}
+
+.tryon-gallery img{
+    width:100%;
+    max-width:600px; /* Adjust as needed */
+    border-radius:20px;
+}
+
+/* MARKET */
+.market-grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+    gap:20px;
+}
+
+.market-item{
+    background:white;
+    padding:30px;
+    border-radius:15px;
+    text-align:center;
+    box-shadow:0 10px 20px rgba(0,0,0,.05);
+}
+
+/* FORM */
+form{
+    max-width:700px;
+    margin:auto;
+}
+
+input, textarea{
+    width:100%;
+    padding:15px;
+    margin-bottom:15px;
+    border:1px solid #d1d5db;
+    border-radius:10px;
+}
+
+textarea{ min-height:150px; }
+
+button{
+    background:#2563eb;
+    color:white;
+    border:none;
+    padding:15px 30px;
+    border-radius:10px;
+    cursor:pointer;
+}
+
+/* SOCIAL */
+.socials{
+    text-align:center;
+}
+
+.social-links{
+    display:flex;
+    justify-content:center;
+    flex-wrap:wrap;
+    gap:15px;
+    margin-top:20px;
+}
+
+.social-links a{
+    background:#2563eb;
+    color:white;
+    padding:12px 20px;
+    border-radius:10px;
+}
+
+/* FOOTER */
+footer{
+    background:#0f172a;
+    color:white;
+    text-align:center;
+    padding:50px 20px;
+}
+
+/* MOBILE */
+@media(max-width:768px){
+    .hero{
+        flex-direction:column;
+        text-align:center;
+    }
+
+    .hero h1{ font-size:2.7rem; }
+
+    .hero-buttons{ justify-content:center; }
+
+    .nav-links{ display:none; }
+}
+
+/* ==============================
+   MODAL NOTIFICATION STYLES
+   ============================== */
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.4);
+    backdrop-filter: blur(4px);
+    z-index: 9999;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s ease;
+}
+
+.modal-overlay.active {
+    opacity: 1;
+    visibility: visible;
+}
+
+.modal-box {
+    background: white;
+    padding: 30px;
+    border-radius: 16px;
+    width: 90%;
+    max-width: 400px;
+    text-align: center;
+    box-shadow: 0 20px 50px rgba(0,0,0,0.15);
+    transform: scale(0.9);
+    transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+    position: relative;
+}
+
+.modal-overlay.active .modal-box {
+    transform: scale(1);
+}
+
+.modal-icon {
+    font-size: 3rem;
+    margin-bottom: 15px;
+    display: block;
+}
+
+.modal-title {
+    font-size: 1.2rem;
+    font-weight: 700;
+    margin-bottom: 10px;
+    color: #0f172a;
+}
+
+.modal-message {
+    color: #6b7280;
+    font-size: 0.95rem;
+    line-height: 1.5;
+    margin-bottom: 20px;
+}
+
+.close-btn {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    background: #f1f5f9;
+    border: none;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    cursor: pointer;
+    color: #64748b;
+    font-size: 1.2rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: 0.2s;
+}
+
+.close-btn:hover {
+    background: #e2e8f0;
+    color: #0f172a;
+}
+
+/* Success Variant */
+.modal-box.success .modal-icon { color: #16a34a; }
+.modal-box.success .modal-title { color: #16a34a; }
+
+/* Error Variant */
+.modal-box.error .modal-icon { color: #dc2626; }
+.modal-box.error .modal-title { color: #dc2626; }
+
+
+.socials p{
+    color:#6b7280;
+    margin-top:15px;
+    margin-bottom:30px;
+}
+
+.social-links a{
+    background:#2563eb;
+    color:white;
+    padding:14px 22px;
+    border-radius:12px;
+    transition:.3s;
+}
+
+.social-links a:hover{
+    background:#1d4ed8;
+    transform:translateY(-3px);
+}
+</style>
+</head>
+
+<body>
+
+<!-- MODAL NOTIFICATION -->
+{% if messages %}
+<div class="modal-overlay" id="notificationModal">
+    <div class="modal-box {% for message in messages %}{{ message.tags }}{% endfor %}">
+        <button class="close-btn" id="closeModal">&times;</button>
+        
+        {% for message in messages %}
+            <span class="modal-icon">
+                {% if message.tags == 'success' %}✅{% else %}⚠️{% endif %}
+            </span>
+            <div class="modal-title">
+                {% if message.tags == 'success' %}Success{% else %}Notice{% endif %}
+            </div>
+            <div class="modal-message">
+                {{ message }}
+            </div>
+        {% endfor %}
+    </div>
+</div>
+{% endif %}
+
+<nav>
+<div class="nav-container">
+<div class="logo">Imura Fashion Hub</div>
+
+<div class="nav-links">
+<a href="#features">Features</a>
+<a href="#tryon">Try-On</a>
+<a href="#marketplace">Marketplace</a>
+<a href="#feedback">Feedback</a>
+</div>
+</div>
+</nav>
+
+<section class="hero container">
+
+<div class="hero-content">
+<div class="badge">🚀 Early Access Open</div>
+
+<h1>Fashion Powered By AI</h1>
+
+<p>
+Take accurate body measurements using your phone, try outfits virtually,
+connect with tailors, order custom clothing and shop fashion products all in one platform.
+</p>
+
+<div class="hero-buttons">
+<a href="#waitlist" class="btn-primary">Join Waitlist</a>
+<a href="#feedback" class="btn-secondary">Give Feedback</a>
+</div>
+</div>
+
+<div class="hero-image">
+<img src="{% static "img/hut0.png" %}" alt="App Mockup">
+</div>
+
+</section>
+
+<section id="features" class="container">
+<div class="section-title"><h2>Features</h2></div>
+
+<div class="feature-grid">
+
+<div class="feature-card">
+<div class="feature-icon">📏</div>
+<h3>AI Body Measurement</h3>
+<p>Get accurate body measurements from photos.</p>
+</div>
+
+<div class="feature-card">
+<div class="feature-icon">👕</div>
+<h3>Digital Try-On</h3>
+<p>Preview outfits before purchasing.</p>
+</div>
+
+<div class="feature-card">
+<div class="feature-icon">✂️</div>
+<h3>Tailor Marketplace</h3>
+<p>Find professional tailors and fashion brands.</p>
+</div>
+
+<div class="feature-card">
+<div class="feature-icon">🛍️</div>
+<h3>Fashion Store</h3>
+<p>Buy clothing directly from designers and brands.</p>
+</div>
+
+</div>
+</section>
+
+<section class="steps">
+<div class="container">
+<div class="section-title"><h2>How It Works</h2></div>
+
+<div class="timeline">
+
+    <div class="step">
+        <strong>1️⃣ Upload Photos</strong>
+        <p>
+            Take or upload front and side photos using your smartphone. Our guided process helps ensure accurate results.
+        </p>
+    </div>
+
+    <div class="step">
+        <strong>2️⃣ Get AI Measurements</strong>
+        <p>
+            Imura uses computer vision and AI to estimate key body measurements for better-fitting clothes.
+        </p>
+    </div>
+
+    <div class="step">
+        <strong>3️⃣ Try On Outfits Virtually</strong>
+        <p>
+            Preview different styles and outfits digitally before making a purchase or placing a tailoring order.
+        </p>
+    </div>
+
+    <div class="step">
+        <strong>4️⃣ Order or Connect</strong>
+        <p>
+            Shop from fashion brands or connect with professional tailors to create custom outfits that fit perfectly.
+        </p>
+    </div>
+
+</div>
+
+</div>
+</section>
+
+<section id="tryon" class="container">
+<div class="section-title">
+<h2>Digital Try-On</h2>
+<p>See yourself in clothes before buying.</p>
+</div>
+
+<div class="tryon-gallery">
+    <img src="{% static 'img/hot.png' %}" alt="Digital Try-On">
+</div>
+</section>
+
+<section id="marketplace" class="container">
+<div class="section-title"><h2>Marketplace</h2></div>
+
+<div class="market-grid">
+
+  <div class="market-item">
+   <strong> 🏪 Showcase Designs </strong>
+    <p>Display your fashion creations with high-quality images, pricing, and style categories. Let customers explore your latest collections easily.</p>
+  </div>
+
+  <div class="market-item">
+    <strong>💬 Customer Messaging </strong>
+    <p>Chat directly with customers in real time to discuss styles, measurements, customization requests, and order updates.</p>
+  </div>
+
+  <div class="market-item">
+    <strong>📦 Order Management </strong>
+    <p>Track all orders from placement to delivery. Manage order status, production progress, and customer requests in one dashboard.</p>
+  </div>
+
+  <div class="market-item">
+    <strong>⭐ Reviews & Ratings</strong>
+    <p>Build trust with customer feedback. Receive ratings, reviews, and testimonials to improve visibility and credibility.</p>
+  </div>
+
+</div>
+</section>
+
+<section id="feedback" class="container">
+<div class="section-title"><h2>Help Us Build Better</h2></div>
+
+<form method="POST">
+    {% csrf_token %}
+
+    <label>Full Name</label>
+    <div>{{ feedback_form.name }}</div>
+
+    <label>Email Address</label>
+    <div>{{ feedback_form.email }}</div>
+
+    <label>Your Feedback</label>
+    <div>{{ feedback_form.message }}</div>
+
+    <button type="submit" name="feedback_submit">Send Feedback</button>
+</form>
+</section>
+
+<section id="waitlist" class="container">
+<div class="section-title">
+<h2>Join The Waitlist</h2>
+<p>Be among the first users when we launch.</p>
+</div>
+
+<form method="POST">
+    {% csrf_token %}
+
+    <label>Email Address</label>
+    <div>{{ waitlist_form.email }}</div>
+
+    <button type="submit" name="waitlist_submit">Join Waitlist</button>
+</form>
+</section>
+
+<section class="socials container">
+<section class="socials container">
+
+    <h2>Join Our Community</h2>
+
+    <p>
+        Stay updated, join discussions, and help shape the future of Imura Fashion Hub.
+    </p>
+
+    <div class="social-links">
+
+        <!-- WhatsApp Group -->
+        <a href="https://chat.whatsapp.com/JEPZ167WXa37GQUwkkAvip"
+           target="_blank">
+            💬 WhatsApp Group
+        </a>
+
+        <!-- User Research Form -->
+        <a href="https://forms.gle/FBrDamR4LM7tBJHp8"
+           target="_blank">
+            📋 Customer Survey
+        </a>
+
+        <!-- Tailor Research Form -->
+        <a href="https://forms.gle/Nz7CGwUqXYkV6tJ17"
+           target="_blank">
+            ✂️ Tailor Survey
+        </a>
+
+        <!-- Social Media -->
+        <a href="https://www.instagram.com/imuraapp?igsh=MTI1MXY0bWpzcjVtbw=="
+           target="_blank">
+            📸 Instagram
+        </a>
+
+        <a href="https://www.facebook.com/share/1amC1NzidY/"
+           target="_blank">
+            👍 Facebook
+        </a>
+
+        <a href="https://vm.tiktok.com/ZS92pNwcEF3Uh-MUfNH/"
+           target="_blank">
+            🎵 TikTok
+        </a>
+
+    </div>
+
+</section>
+</section>
+
+<footer>
+<h3>Imura Fashion Hub</h3>
+<p>Transforming Fashion Through AI, Digital Try-On and Smart Tailoring.</p>
+<p>© 2026 Imura Fashion Hub. All Rights Reserved.</p>
+</footer>
+
+<script>
+document.addEventListener("DOMContentLoaded", function() {
+    const modal = document.getElementById('notificationModal');
+    const closeBtn = document.getElementById('closeModal');
+
+    if (modal) {
+        // Show modal immediately
+        setTimeout(() => {
+            modal.classList.add('active');
+        }, 100);
+
+        // Close function
+        function closeModal() {
+            modal.classList.remove('active');
+            setTimeout(() => {
+                modal.remove(); // Remove from DOM after animation
+            }, 300);
+        }
+
+        // Close on button click
+        if(closeBtn) {
+            closeBtn.addEventListener('click', closeModal);
+        }
+
+        // Close on outside click
+        modal.addEventListener('click', function(e) {
+            if (e.target === modal) {
+                closeModal();
+            }
+        });
+
+        // Auto close after 4 seconds
+        setTimeout(() => {
+            if (modal.classList.contains('active')) {
+                closeModal();
+            }
+        }, 4000);
+    }
+});
+</script>
+
+</body>
+</html>
