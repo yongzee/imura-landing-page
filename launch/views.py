@@ -1,11 +1,9 @@
 from django.shortcuts import render, redirect
 from django.contrib import messages
-
 from .forms import FeedbackForm, WaitlistForm
 
 
 def landing_page(request):
-
     # ALWAYS define forms first (prevents UnboundLocalError)
     feedback_form = FeedbackForm()
     waitlist_form = WaitlistForm()
@@ -15,25 +13,29 @@ def landing_page(request):
         # FEEDBACK FORM
         if "feedback_submit" in request.POST:
             feedback_form = FeedbackForm(request.POST)
-
             if feedback_form.is_valid():
                 feedback_form.save()
                 messages.success(
                     request,
-                    "✅ Feedback received successfully. We appreciate your input!"
+                    "Feedback received successfully. We appreciate your input!"
                 )
                 return redirect("landing_page")
+            else:
+                messages.error(request, "Please correct the errors in the feedback form.")
 
         # WAITLIST FORM
         elif "waitlist_submit" in request.POST:
             waitlist_form = WaitlistForm(request.POST)
-
             if waitlist_form.is_valid():
                 waitlist_form.save()
                 messages.success(
                     request,
-                    "🚀 You're on the waitlist! We'll notify you when Imura launches."
+                    "You're on the waitlist! We'll notify you when Imura launches."
                 )
+                return redirect("landing_page")
+            else:
+                # This catches if the entered text/number is already on the waitlist
+                messages.error(request, "This entry is already on our waitlist!")
                 return redirect("landing_page")
 
     return render(request, "landing_page.html", {

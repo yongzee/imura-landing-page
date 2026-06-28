@@ -423,7 +423,7 @@ footer{
 
 <nav>
 <div class="nav-container">
-<div class="logo">Imura Fashion Hub</div>
+<div class="logo">ImuraFH</div>
 
 <div class="nav-links">
 <a href="#features">Features</a>
@@ -577,7 +577,7 @@ connect with tailors, order custom clothing and shop fashion products all in one
     <label>Full Name</label>
     <div>{{ feedback_form.name }}</div>
 
-    <label>Email Address</label>
+    <label>Email Address/Phone Number</label>
     <div>{{ feedback_form.email }}</div>
 
     <label>Your Feedback</label>
@@ -596,7 +596,7 @@ connect with tailors, order custom clothing and shop fashion products all in one
 <form method="POST">
     {% csrf_token %}
 
-    <label>Email Address</label>
+    <label>Email Address/Phone Number</label>
     <div>{{ waitlist_form.email }}</div>
 
     <button type="submit" name="waitlist_submit">Join Waitlist</button>
@@ -654,7 +654,7 @@ connect with tailors, order custom clothing and shop fashion products all in one
 </section>
 
 <footer>
-<h3>Imura Fashion Hub</h3>
+<h3>ImuraFH</h3>
 <p>Transforming Fashion Through AI, Digital Try-On and Smart Tailoring.</p>
 <p>© 2026 Imura Fashion Hub. All Rights Reserved.</p>
 </footer>
